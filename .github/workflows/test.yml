@@ -25,7 +25,7 @@ jobs:
         pip install -U -e .[cssselect,pyquery]
     
     - name: Instrument code
-      uses: AryazE/auto-dylin/instrument
+      uses: AryazE/auto-dylin/instrument@main
 
     - name: Start MongoDB
       uses: ankane/setup-mongodb@v1
@@ -54,7 +54,7 @@ jobs:
         parallel: true 
     
     - name: DyLin reports
-      uses: AryazE/auto-dylin/report
+      uses: AryazE/auto-dylin/report@main
 
   finish:
       needs: test
