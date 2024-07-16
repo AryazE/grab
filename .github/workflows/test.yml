@@ -53,7 +53,7 @@ jobs:
         flag-name: run-${{ matrix.os }}-${{ matrix.python }}
         parallel: true 
     
-    - name: Prepare DyLin's report
+    - name: DyLin reports
       uses: AryazE/auto-dylin/report
 
   finish:
