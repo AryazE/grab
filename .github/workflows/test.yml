@@ -24,8 +24,8 @@ jobs:
         pip install -U -r requirements_backend.txt
         pip install -U -e .[cssselect,pyquery]
     
-    # - name: Instrument code
-    #   uses: AryazE/auto-dylin/instrument@main
+    - name: Instrument code
+      uses: AryazE/auto-dylin/instrument@main
 
     - name: Start MongoDB
       uses: ankane/setup-mongodb@v1
@@ -53,8 +53,9 @@ jobs:
         flag-name: run-${{ matrix.os }}-${{ matrix.python }}
         parallel: true 
     
-    # - name: DyLin reports
-    #   uses: AryazE/auto-dylin/report@main
+    - name: DyLin reports
+      if: always()
+      uses: AryazE/auto-dylin/report@main
 
   finish:
       needs: test
