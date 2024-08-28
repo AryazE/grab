@@ -26,6 +26,8 @@ jobs:
     
     - name: Instrument code
       uses: AryazE/auto-dylin/instrument@main
+      with:
+        analysis-coverage: false
 
     - name: Start MongoDB
       uses: ankane/setup-mongodb@v1
@@ -42,28 +44,8 @@ jobs:
     - name: Run tests
       shell: bash
       run: |
-        pytest -n=logical -x --cov grab --cov-report term-missing
-        coverage lcov -o .coverage.lcov
-
-    - name: Coveralls Parallel
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.github_token }}
-        path-to-lcov: ./.coverage.lcov
-        flag-name: run-${{ matrix.os }}-${{ matrix.python }}
-        parallel: true 
+        pytest -n=logical
     
     - name: DyLin reports
       if: always()
       uses: AryazE/auto-dylin/report@main
-
-  finish:
-      needs: test
-      runs-on: ubuntu-latest
-      steps:
-      - name: Coveralls Finished
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.github_token }}
-          path-to-lcov: ./.coverage.lcov
-          parallel-finished: true
