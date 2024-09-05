@@ -9,6 +9,7 @@ mock
 bumpversion
 pytest
 pytest-xdist
+pytest-timeout
 build
 twine
 ruff
